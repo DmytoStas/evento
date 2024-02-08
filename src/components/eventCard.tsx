@@ -10,14 +10,14 @@ export default function EventCard({ event }: EventCardProps) {
   return (
     <Link
       href={`/event/${event.slug}`}
-      className="relative flex w-full h-full flex-col bg-white/[3%] rounded-xl overflow-hidden transition hover:scale-105 active:scale-[1.02]"
+      className="relative flex w-full h-full flex-col bg-white/[3%] rounded-xl overflow-hidden state-effects"
     >
       <Image
         src={event.imageUrl}
         alt={event.name}
         width={500}
         height={280}
-        className="h-[60%] object-fit"
+        className="h-[60%] object-cover"
       />
 
       <div className="flex flex-col flex-1 justify-center items-center">
