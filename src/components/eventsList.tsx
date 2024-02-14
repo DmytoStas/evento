@@ -1,18 +1,33 @@
-import { type EventoEvent } from "@/lib/type";
 import EventCard from "./eventCard";
+import { getEventsByCity } from "@/lib/utils";
+import PaginationControls from "./paginationControls";
 
 type EventsListProps = {
-  events: EventoEvent[];
+  city: string;
+  page?: number;
 };
 
-export default function EventsList({ events }: EventsListProps) {
+export default async function EventsList({ city, page = 1 }: EventsListProps) {
+  const { events, totalCount } = await getEventsByCity(city, page);
+
+  const previousPath = page > 1 ? `/events/${city}?page=${page - 1}` : "";
+  const nextPath =
+    totalCount > 6 * page ? `/events/${city}?page=${page + 1}` : "";
+
   return (
-    <ul className="flex max-w-[1100px] px-[20px] flex-wrap gap-10 justify-center">
-      {events.map((event) => (
-        <li key={event.id} className="flex-1 basis-80 h-[380px] max-w-[500px] ">
-          <EventCard event={event} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className="flex mb-8 flex-wrap gap-10 justify-center">
+        {events.map((event) => (
+          <li
+            key={event.id}
+            className="flex-1 basis-[386px] h-[380px] max-w-[500px]"
+          >
+            <EventCard event={event} />
+          </li>
+        ))}
+      </ul>
+
+      <PaginationControls previousPath={previousPath} nextPath={nextPath} />
+    </>
   );
 }
