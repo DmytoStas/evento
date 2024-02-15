@@ -1,5 +1,6 @@
 import H1 from "@/components/h1";
-import { cn, getEvent } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { getEvent } from "@/lib/serverUtils";
 import { Metadata } from "next";
 import Image from "next/image";
 
