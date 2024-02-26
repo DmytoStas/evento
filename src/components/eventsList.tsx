@@ -20,7 +20,7 @@ export default async function EventsList({ city, page = 1 }: EventsListProps) {
         {events.map((event) => (
           <li
             key={event.id}
-            className="flex-1 basis-[386px] h-[380px] max-w-[500px]"
+            className="flex-1 basis-[386px] h-[380px] max-w-[500px] hover:scale-105 transition"
           >
             <EventCard event={event} />
           </li>
